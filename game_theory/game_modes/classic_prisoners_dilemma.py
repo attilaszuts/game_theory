@@ -29,20 +29,18 @@ class ClassicPrisonersDilemma(BaseGameMode):
         """
         super().__init__(player_one, player_two, turns)
 
-    def evaluate_turn(self):
-        one = self.p1.play_turn()
-        two = self.p2.play_turn()
+    def evaluate_turn(self, p1_choice: int, p2_choice: int):
         result = {
-            f"{self.p1.name}_choice": one,
-            f"{self.p2.name}_choice": two
+            f"{self.p1.name}_choice": p1_choice,
+            f"{self.p2.name}_choice": p2_choice
         }
-        if one == 0 and two == 0:
+        if p1_choice == 0 and p2_choice == 0:
             result[f"{self.p1.name}_gain"] = 3
             result[f"{self.p2.name}_gain"] = 3
-        elif one == 0 and two == 1:
+        elif p1_choice == 0 and p2_choice == 1:
             result[f"{self.p1.name}_gain"] = 0
             result[f"{self.p2.name}_gain"] = 5
-        elif one == 1 and two == 0:
+        elif p1_choice == 1 and p2_choice == 0:
             result[f"{self.p1.name}_gain"] = 5
             result[f"{self.p2.name}_gain"] = 0
         else:

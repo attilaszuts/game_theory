@@ -45,7 +45,9 @@ class BaseGameMode(ABC):
         pass
 
     def __one_turn(self):
-        result = self.evaluate_turn()
+        p1_choice = self.p1.play_turn()
+        p2_choice = self.p2.play_turn()
+        result = self.evaluate_turn(p1_choice, p2_choice)
         self.results.append(result)
         self.p1.get_info(result)
         self.p2.get_info(result)
